@@ -67,9 +67,9 @@
                 </div>
                 <ul class="list-unstyled name-list">
                     Kesen Zhao </a><sup>1</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		            Berer Zhu </a><sup>2</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		            Qianru Sun </a><sup>1</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				Hanwang Zhang </a><sup>2</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		            Berer Zhu </a><sup>1✉</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		            Qianru Sun </a><sup>2</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Hanwang Zhang </a><sup>1</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    
                 </ul>
                 <ul class="list-unstyled name-list">
@@ -89,70 +89,24 @@
 
         <section class='section'>
             <div class="section-title">
-                Overview of AnimeRun
+                Overview of UV-CoT
             </div>
             <div class='details' style="width:100%">
 
-                <iframe class='video' style="width:100%" src="https://www.youtube.com/embed/pCY1axzCnVY" title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                <iframe class='image' style="width:100%; height:auto; display:block; margin:0 auto;" 
+			src="images/fig1_v4.0.pdf" alt="overview"
             </div>
+		
 
-            <div class='details links-table'>
-                <table style="margin: 0px auto;">
-                    <tr>
-                        <td style="width:20%">
-                            <div>
-                                <img src='./UV-CoT/images/color.jpg' width="95%">
-                            </div>
-                        </td>
+        
 
-                        <td style="width:20%">
-                            <div>
-                                <img src='./UV-CoT/images/line.jpg' width="95%">
-                            </div>
-                        </td>
 
-                        <td style="width:20%">
-                            <div>
-                                <img src='./UV-CoT/images/flow.jpg' width="95%">
-                            </div>
-                        </td>
-                        <td style="width:40%">
-                            <div>
-                                <img
-                                     src='./UV-CoT/images/seg.jpg' width="90%">
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- <tr>
-                        <td align="center">2D Cartoon
-                                </td>
-                        <td align="center">Contour line</td>
-                        <td align="center">Optical Flow</td>
-                        <td align="center">Segmentation and Segment Matching </td>
-                    </tr>
-                    <tr>
-                        <td align="center">
-                                </td>
-                        <td align="center"></td>
-                        <td align="center"></td>
-                        <td align="center">of adjancent frames</td>
-                    </tr> -->
-                    
-                </table>
+<div class="details">
+    <strong>Comparison between Visual CoT and our <code>UV-CoT</code></strong><br><br>
+    <strong>Left:</strong> Visual CoT depends on <em>human-annotated bounding boxes</em> to identify key regions. The model is trained using supervised fine-tuning to maximize the likelihood of matching the labeled data.<br><br>
+    <strong>Right:</strong> <code>UV-CoT</code> removes the need for manual annotation. Given an input image, the model automatically generates initial (seed) bounding boxes and answers questions based on these regions. An evaluator multi-modal LLM (MLLM) then scores the answers as an indirect measure of region quality. Finally, the target model is optimized via <em>preference optimization</em>, encouraging it to favor regions associated with better answers.
+</div>
 
-            </div>
-            <div>  
-
-            
-            </div>
-
-            <div class="details">
-                AnimeRun is a correspondence dataset for 2D-styled cartoons, rendered from three open source movies: <i><a href="https://www.youtube.com/watch?v=mN0zPOpADL4">Agent 327</a></i>, <i><a href="https://www.youtube.com/watch?v=SkVqJ1SGeL0">Caminandes 3: Llamigos</a></i> and <i><a href="https://www.youtube.com/watch?v=_cMxraX_5RE">Sprite Fright</a></i>.
-                It provides colored  frames and black-and-white contour lines of 2D cartoons and correspondence labels at pixel level (optical flow) and region level (segment matching). The data is designed to facilitate automatic processing on 2D animation, <i>e.g.</i>, frame interpolation and referenced colorization.
-            </div>
            
 
         </section>
