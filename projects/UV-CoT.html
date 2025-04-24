@@ -1,207 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uv-CoT: Unsupervised Visual Chain-of-Thought Reasoning via Preference Optimization</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="UV-CoT">
-    <!-- <meta name="google-site-verification" content="FzAJM_4azDmgt5qXJBAUDAx332xVDar5iPZyD48YJug" /> -->
-
-    <title>UV-CoT Project Page</title>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons/css/academicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
-    <link id="theme-style" rel="stylesheet" href="./UV-CoT/css/main.css">
-    <link id="theme-style" rel="stylesheet" href="./UV-CoT/css/bulma-carousel.min.css">
-    <link id="theme-style" rel="stylesheet" href="./UV-CoT/css/bulma-slider.min.css">
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics
-    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', '');
-    </script> -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G7KG5PND3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-7G7KG5PND3');
-    </script> -->
-
-
-
-
-    <!-- <script type="module" src="./UV-CoT/js/background_box.js"></script> -->
-    <script type="module" src="./UV-CoT/js/background_star.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./UV-CoT/js/bulma-carousel.min.js"></script>
-    <script src="./UV-CoT/js/bulma-slider.min.js"></script>
-    <script src="./UV-CoT/js/index.js"></script>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <!-- CSS 样式 -->
+  <link rel="stylesheet" href="./UV-CoT/css/main.css">
+  <link rel="stylesheet" href="./UV-CoT/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./UV-CoT/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./UV-CoT/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="icon" href="./UV-CoT/images/icon.png">
 </head>
 
 <body>
+  <!-- 页面容器 -->
+  <div class="container">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title is-2">Uv-CoT: Unsupervised Visual Chain-of-Thought Reasoning via Preference Optimization</h1>
+          <h3 class="title is-4">ICCV 2024</h3>
 
+          <!-- 作者信息 -->
+          <ul class="list-unstyled name-list">
+            Kesen Zhao<sup>1</sup> &nbsp;&nbsp;
+            Berer Zhu<sup>1✉</sup> &nbsp;&nbsp;
+            Qianru Sun<sup>2</sup> &nbsp;&nbsp;
+            Hanwang Zhang<sup>1</sup>
+          </ul>
 
+          <div class="is-size-6 mt-2">
+            <sup>1</sup>Nanyang Technological University &nbsp;&nbsp;
+            <sup>2</sup>Singapore Management University
+          </div>
 
-    <div class="wrapper">
-
-        <section class="section intro-section">
-            <div class="intro-container" style="text-align: center;">
-                <div class="header">
-                    <h3 class="papername">Uv-CoT: unsupervised Visual Chain-of-Thought <br> Reasoning via Preference Optimization 
-                    </h3>
-                </div>
-                <ul class="list-unstyled name-list">
-                    Kesen Zhao </a><sup>1</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		            Berer Zhu </a><sup>1✉</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		            Qianru Sun </a><sup>2</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				Hanwang Zhang </a><sup>1</sup> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   
-                </ul>
-                <ul class="list-unstyled name-list">
-                    <li><sup>1</sup>MReal, Nanyang Technological University</li>
-                    <li><sup>2</sup>Singapore Management University</li>
-
-                </ul>
-                <ul class="list-unstyled name-list">
-                
-                    <li>✉corresponding author</li>
-                </ul>
-
-            </div>
-
-            
-        </section>
-
-        <section class='section'>
-            <div class="section-title">
-                Overview of UV-CoT
-            </div>
-            <div class='details' style="width:100%">
-
-                <iframe class='image' style="width:100%; height:auto; display:block; margin:0 auto;" 
-			src="images/fig1_v4.0.pdf" alt="overview"
-            </div>
-		
-
-        
-
-
-<div class="details">
-    <strong>Comparison between Visual CoT and our <code>UV-CoT</code></strong><br><br>
-    <strong>Left:</strong> Visual CoT depends on <em>human-annotated bounding boxes</em> to identify key regions. The model is trained using supervised fine-tuning to maximize the likelihood of matching the labeled data.<br><br>
-    <strong>Right:</strong> <code>UV-CoT</code> removes the need for manual annotation. Given an input image, the model automatically generates initial (seed) bounding boxes and answers questions based on these regions. An evaluator multi-modal LLM (MLLM) then scores the answers as an indirect measure of region quality. Finally, the target model is optimized via <em>preference optimization</em>, encouraging it to favor regions associated with better answers.
-</div>
-
-           
-
-        </section>
-
-        <section class='section links-section'>
-            <div class='section-title'>
-                Links
-            </div>
-            <div class='details links-table'>
-                <table>
-                    <tr>
-                        <td>
-                            <div class='links-container'>
-                                <a href='https://openaccess.thecvf.com/content/ICCV2023/papers/Zhu_Prompt-aligned_Gradient_for_Prompt_Tuning_ICCV_2023_paper.pdf' target="_blank"> <img class='links-cover'
-                                        src='./UV-CoT/images/paper.png' alt='PDF Cover'></a>
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class='links-container'>
-                                <a href='https://github.com/kesenzhao/UV-CoT' target="_blank"><img class='links-cover'
-                                        src='./UV-CoT/images/github.png' alt='github icon'></a>
-                            </div>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Zhu_Prompt-aligned_Gradient_for_Prompt_Tuning_ICCV_2023_paper.pdf" target=""_blank>Paper PDF</a>
-                                </td>
-                        <td><a href='https://github.com/kesenzhao/UV-CoT' target="_blank">Code</a></td>
-
-                    </tr>
-                </table>
-            </div>
-        </section>
-
-        <section class='section'>
-            <div class="section-title">
-                Visualization 
-            </div>
-
-            <div class="details ">
-            <p align='center'>Visualization of preference data generated by our method. 
-        Preferred bounding boxes are shown in <span style="color: red; font-weight: bold;">red</span>. 
-        Dis-preferred bounding boxes are in <span style="color: blue; font-weight: bold;">blue</span>.</p>
-            </div>
-		
-	<div class='details' style="width:100%">
-    <img class='image' style="width:100%; height:auto; display:block; margin:0 auto;" 
-         src="images/fig5_v1.2.pdf" alt="preference data">
-	</div>
-
-		<div class="details ">
-            <p align='center'>Visualization of our <code>UV-CoT</code> inference. 
-        Model-generated bounding boxes are shown in  <span style="color: red; font-weight: bold;">red</span>. </p>
-            </div>
-
-		
-	<div class='details' style="width:100%">
-    <img class='image' style="width:100%; height:auto; display:block; margin:0 auto;" 
-         src="images/fig6_v1.2.pdf" alt="Model-generated bounding boxes">
-	</div>
-
-            
-
-            
-
-        <section class='section'>
-            <div class="section-title">
-                Citation
-            </div>
-            <div class="details">
-            <pre>@inproceedings{
-              }
-            </pre>
+          <!-- 链接 -->
+          <div class="mt-4">
+            <table class="table is-centered is-narrow">
+              <tbody>
+                <tr>
+                  <td><a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Zhu_Prompt-aligned_Gradient_for_Prompt_Tuning_ICCV_2023_paper.pdf" target="_blank">Paper PDF</a></td>
+                  <td><a href="https://github.com/kzhao-info/UV-CoT" target="_blank">Code</a></td>
+                  <td><a href="https://arxiv.org/abs/2404.07515" target="_blank">arXiv</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        </section>   
+      </div>
+    </section>
 
-        <section class='section'>
-            <div class="section-title">
-                Licence
-            </div>
-            Dataset is released under CC-BY-NC 4.0 License. Code is released under MIT License.
-            
-        </section>   
+    <!-- PDF 可视化 -->
+    <section class="section">
+      <div class="container has-text-centered">
+        <iframe class="image" style="width:100%; height:600px;" 
+          src="images/fig1_v4.0.pdf"></iframe>
+        <p class="has-text-grey mt-2">Figure 1: Overview of Uv-CoT pipeline.</p>
+      </div>
+    </section>
 
+    <!-- BibTeX 引用 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="title is-4">BibTeX</h2>
+        <pre>
+@inproceedings{zhao2024uvcot,
+  title     = {Uv-CoT: Unsupervised Visual Chain-of-Thought Reasoning via Preference Optimization},
+  author    = {Zhao, Kesen and Zhu, Berer and Sun, Qianru and Zhang, Hanwang},
+  booktitle = {},
+  year      = {2024}
+}
+        </pre>
+      </div>
+    </section>
 
-    </div>
+    <!-- 页脚 -->
+    <footer class="footer has-text-centered">
+      <div class="content">
+        <p>© 2024 Uv-CoT Authors. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
 
-
-
-
-
-
-
+  <!-- JavaScript 资源 -->
+  <script src="./UV-CoT/js/jquery.min.js"></script>
+  <script src="./UV-CoT/js/bulma-carousel.min.js"></script>
+  <script src="./UV-CoT/js/bulma-slider.min.js"></script>
 </body>
 
 </html>
